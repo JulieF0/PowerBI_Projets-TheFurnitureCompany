@@ -1,0 +1,6 @@
+IS_Variation = 
+IF (
+    ISBLANK ( [IS_NetProfitPreviousMonth$] ),
+    "NA",
+    [IS_ NetProfit$] - [IS_NetProfitPreviousMonth$]
+)
