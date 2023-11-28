@@ -1,0 +1,1 @@
+Bud_NetProfit$ = [Bud_NetRevenue$] - SUMX(FILTER(Budget, Budget[Category] = "Expense"), Budget[Budget$])
