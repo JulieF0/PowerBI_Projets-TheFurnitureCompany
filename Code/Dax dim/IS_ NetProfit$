@@ -1,0 +1,1 @@
+IS_ NetProfit$ = [IS_NetRevenue$] - SUMX(FILTER(IncomeStatement_account, IncomeStatement_account[Category] = "Expense"), IncomeStatement[IS_Amount$])
