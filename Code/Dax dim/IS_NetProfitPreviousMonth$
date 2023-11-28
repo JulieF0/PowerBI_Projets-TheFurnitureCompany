@@ -1,0 +1,9 @@
+IS_NetProfitPreviousMonth$ = 
+VAR CurrentMonthNetProfit = [IS_ NetProfit$]
+VAR PreviousMonthNetProfit = 
+    CALCULATE(
+        [IS_ NetProfit$],
+        PREVIOUSMONTH('DateTable'[Date])
+    )
+RETURN
+    PreviousMonthNetProfit
