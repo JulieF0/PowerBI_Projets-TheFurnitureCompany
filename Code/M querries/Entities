@@ -1,0 +1,7 @@
+let
+    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcs0rySypVDBUitWBc4yQOcbIHBNkjikyxwyZY64UGwsA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Entity = _t]),
+    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Entity", type text}}),
+    #"Inserted Text After Delimiter" = Table.AddColumn(#"Changed Type", "Text After Delimiter", each Text.AfterDelimiter([Entity], " "), type text),
+    #"Renamed Columns" = Table.RenameColumns(#"Inserted Text After Delimiter",{{"Text After Delimiter", "Entity_nbr"}})
+in
+    #"Renamed Columns"
