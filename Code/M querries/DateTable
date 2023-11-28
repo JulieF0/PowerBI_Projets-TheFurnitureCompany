@@ -1,0 +1,16 @@
+let
+    StartDate = #date(2017, 1, 1),
+    EndDate = #date(2018, 12, 31),
+    NumberOfDays = Duration.From(EndDate - StartDate),
+    DatesList = List.Dates(StartDate, Number.From(NumberOfDays) + 1, #duration(1, 0, 0, 0)),
+    Table = Table.FromList(DatesList, Splitter.SplitByNothing()),
+    #"Changed Type" = Table.TransformColumnTypes(Table,{{"Column1", type date}}),
+    #"Inserted Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Column1]), Int64.Type),
+    #"Inserted Month" = Table.AddColumn(#"Inserted Year", "Month", each Date.Month([Column1]), Int64.Type),
+    #"Inserted Start of Month" = Table.AddColumn(#"Inserted Month", "Start of Month", each Date.StartOfMonth([Column1]), type date),
+    #"Inserted Quarter" = Table.AddColumn(#"Inserted Start of Month", "Quarter", each Date.QuarterOfYear([Column1]), Int64.Type),
+    #"Inserted Week of Year" = Table.AddColumn(#"Inserted Quarter", "Week of Year", each Date.WeekOfYear([Column1]), Int64.Type),
+    #"Renamed Columns" = Table.RenameColumns(#"Inserted Week of Year",{{"Column1", "Date"}}),
+    #"Inserted Month Name" = Table.AddColumn(#"Renamed Columns", "Month Name", each Date.MonthName([Date], "en-US"), type text)
+in
+    #"Inserted Month Name"
