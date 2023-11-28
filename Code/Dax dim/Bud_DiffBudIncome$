@@ -1,0 +1,1 @@
+Bud_DiffBudIncome = IncomeStatement[NetProfit$] - Budget[Bud_NetProfit$] 
