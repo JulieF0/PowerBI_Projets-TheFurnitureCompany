@@ -1,0 +1,10 @@
+let
+    Source = Sql.Databases("AG-OP-0004"),
+    #"Furniture Company" = Source{[Name="Furniture Company"]}[Data],
+    dbo_BalanceSheet_account = #"Furniture Company"{[Schema="dbo",Item="BalanceSheet_account"]}[Data],
+    #"Filtered Rows" = Table.SelectRows(dbo_BalanceSheet_account, each true),
+    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"Entity"}),
+    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+    #"Appended Query" = Table.Combine({#"Removed Duplicates", data_AccountBalanceSheet})
+in
+    #"Appended Query"
