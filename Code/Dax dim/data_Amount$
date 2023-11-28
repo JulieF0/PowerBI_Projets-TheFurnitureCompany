@@ -1,0 +1,1 @@
+data_Amount$ = sum(data[Amount])
