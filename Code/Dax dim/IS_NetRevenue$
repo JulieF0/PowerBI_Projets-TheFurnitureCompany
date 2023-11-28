@@ -1,0 +1,3 @@
+IS_NetRevenue$ = SUMX(FILTER(IncomeStatement_account, IncomeStatement_account[Category] = "Revenue"), IncomeStatement[IS_Amount$])
+- SUMX(FILTER(IncomeStatement_account, IncomeStatement_account[Category] = "Cost of Revenue"), IncomeStatement[IS_Amount$])
+
