@@ -1,0 +1,6 @@
+let
+    Source = Sql.Databases("AG-OP-0004"),
+    #"Furniture Company" = Source{[Name="Furniture Company"]}[Data],
+    dbo_IncomeStatement = #"Furniture Company"{[Schema="dbo",Item="IncomeStatement"]}[Data]
+in
+    dbo_IncomeStatement
