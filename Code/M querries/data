@@ -1,0 +1,13 @@
+let
+    Source = Sql.Databases("AG-OP-0004"),
+    #"Furniture Company" = Source{[Name="Furniture Company"]}[Data],
+    dbo_data = #"Furniture Company"{[Schema="dbo",Item="data"]}[Data],
+    #"Replaced Value" = Table.ReplaceValue(dbo_data,"'","",Replacer.ReplaceText,{"Amount"}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"Amount", Currency.Type}}),
+    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Account", "Account_Temp"}}),
+    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns", "Account", each if [Sub_Group] = "Other Payable" then "999999-1" else if [Sub_Group] = "Current Period Profit" then "Net Income" else if [Sub_Group] = "Partner's Capital Account" then "999999-2" else if [Sub_Group] = "Statutory Reserve" then "999999-3" else [Account_Temp]),
+    #"Merged Columns" = Table.CombineColumns(Table.TransformColumnTypes(#"Added Conditional Column", {{"Year", type text}}, "fr-CA"),{"Year", "Month"},Combiner.CombineTextByDelimiter("-", QuoteStyle.None),"Merged-date"),
+    #"Inserted Date" = Table.AddColumn(#"Merged Columns", "Start of Month", each Date.From([#"Merged-date"]), type date),
+    #"Removed Columns" = Table.RemoveColumns(#"Inserted Date",{"Category", "Group", "Sub_Group", "Merged-date", "Account_Temp"})
+in
+    #"Removed Columns"
