@@ -1,0 +1,7 @@
+let
+    Source = Sql.Databases("AG-OP-0004"),
+    #"Furniture Company" = Source{[Name="Furniture Company"]}[Data],
+    dbo_BalanceSheet = #"Furniture Company"{[Schema="dbo",Item="BalanceSheet"]}[Data],
+    #"Changed Type" = Table.TransformColumnTypes(dbo_BalanceSheet,{{"Amount", Currency.Type}})
+in
+    #"Changed Type"
