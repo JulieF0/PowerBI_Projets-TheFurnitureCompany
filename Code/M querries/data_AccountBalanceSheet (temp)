@@ -1,0 +1,13 @@
+let
+    Source = Sql.Databases("AG-OP-0004"),
+    #"Furniture Company" = Source{[Name="Furniture Company"]}[Data],
+    dbo_data = #"Furniture Company"{[Schema="dbo",Item="data"]}[Data],
+    #"Filtered Rows" = Table.SelectRows(dbo_data, each ([Account] = null)),
+    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"Year", "Month", "Amount"}),
+    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Account", "Account_temp"}}),
+    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns", "Account", each if [Sub_Group] = "Other Payable" then "999999-1" else if [Sub_Group] = "Partner's Capital Account" then "999999-2" else if [Sub_Group] = "Statutory Reserve" then "999999-3" else if [Sub_Group] = "Current Period Profit" then "999999-4" else [Account_temp]),
+    #"Removed Columns1" = Table.RemoveColumns(#"Added Conditional Column",{"Account_temp"}),
+    #"Removed Duplicates" = Table.Distinct(#"Removed Columns1"),
+    #"Renamed Columns1" = Table.RenameColumns(#"Removed Duplicates",{{"Sub_Group", "Sub-Group"}})
+in
+    #"Renamed Columns1"
