@@ -1,0 +1,15 @@
+let
+    Source = Sql.Databases("AG-OP-0004"),
+    #"Furniture Company" = Source{[Name="Furniture Company"]}[Data],
+    dbo_IncomeStatement_account = #"Furniture Company"{[Schema="dbo",Item="IncomeStatement_account"]}[Data],
+    #"Removed Columns" = Table.RemoveColumns(dbo_IncomeStatement_account,{"Sub-Group", "Entity"}),
+    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+    #"Removed Duplicates1" = Table.Distinct(#"Removed Duplicates"),
+    #"Removed Duplicates2" = Table.Distinct(#"Removed Duplicates1", {"Account", "Category"}),
+    #"Split Column by Delimiter" = Table.SplitColumn(#"Removed Duplicates2", "Group", Splitter.SplitTextByEachDelimiter({"-"}, QuoteStyle.None, false), {"Group.1", "Group.2"}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Group.1", type text}, {"Group.2", type text}}),
+    #"Merged Columns" = Table.CombineColumns(#"Changed Type",{"Group.1", "Group.2"},Combiner.CombineTextByDelimiter("", QuoteStyle.None),"Group"),
+    #"Removed Columns1" = Table.RemoveColumns(#"Merged Columns",{"Account"}),
+    #"Removed Duplicates3" = Table.Distinct(#"Removed Columns1")
+in
+    #"Removed Duplicates3"
