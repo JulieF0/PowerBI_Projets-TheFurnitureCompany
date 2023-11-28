@@ -1,0 +1,8 @@
+let
+    Source = Budget,
+    #"Removed Columns" = Table.RemoveColumns(Source,{"Entity", "Date", "Budget"}),
+    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+    #"Appended Query" = Table.Combine({#"Removed Duplicates", IS_Group}),
+    #"Removed Duplicates1" = Table.Distinct(#"Appended Query")
+in
+    #"Removed Duplicates1"
