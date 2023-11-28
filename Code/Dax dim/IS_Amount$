@@ -1,0 +1,1 @@
+IS_Amount$ = sum(IncomeStatement[Amount])
