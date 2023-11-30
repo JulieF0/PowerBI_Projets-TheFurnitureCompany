@@ -34,7 +34,7 @@ L'entreprise pourrait envisager une révision de ses méthodes de collecte de do
 
 _Conclusion_
 
-En conclusion, l'hypothèse initiale est réfutée, puisqu’il a démontré que l'importance de disposer de données fiables pour toute analyse financière est essentiel. Ce résultat offre une piste afin de réévaluer et d'améliorer les processus de collecte et de gestion des données financière des entreprises. Rendant ainsi possible de permettre aux gestionnaires de prendre une prise de décision plus éclairée. 
+En conclusion, l'hypothèse initiale est réfutée, puisqu’il a été démontré que l'importance de disposer de données fiables pour toute analyse financière est essentiel. Ce résultat offre une piste afin de réévaluer et d'améliorer les processus de collecte et de gestion des données financière des entreprises. Rendant ainsi possible aux gestionnaires de prendre une prise de décision plus éclairée. 
 
 
 _Bibliographie_
