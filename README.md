@@ -1,6 +1,6 @@
 # PowerBI_Projets-TheFurnitureCompany
 
--Introduction
+##Introduction
 La littératie financière est une compétence essentielle à une gestion efficace des opérations d’une entreprise. En effet, disposer suffisamment de connaissances sur le plan financier permet aux dirigeants d’une société une prise de décision éclairée. Cependant, un projet conjoint réalisé en 2017 entre le département de Recherche et intelligence de marché de BDC et l’École de gestion Telfer de l’Université d’Ottawa a dévoilé que «[p]lus des deux tiers des propriétaires d'entreprise se considèrent informés en matière financière» (La Littératie Financière Chez Les Entrepreneurs et Les Propriétaires d’Entreprise Canadiens, 2017). Par conséquent, cette déclaration nous révèle qu’il peut être difficile pour environ un tiers d’entre eux à comprendre les états financiers. 
 
 Plusieurs entreprises disposent d’un ERP comptable qui dispose des données relatives aux opérations financières. Au lieu des bilans et états des résultats conventionnels, il est possible de créer des tableaux de bord connectés à ces bases de données, afin de présenter l’information sous un nouvel angle. Le projet explore l’hypothèse suivante : la présentation des résultats financiers à l’aide d’un tableau de bord facilite l’interprétation de l’information et conséquemment rend plus accessible l’information financière. 
